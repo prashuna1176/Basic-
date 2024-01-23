@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+<title>Centered Time</title>
+<style>
+body{
+background:url("time.jpg");
+background-repeat:no-repeat;
+background-size:1524px 708px ;
+}
+section{ display: flex;
+ align-items: center;
+ justify-content: center;
+ height: 70vh; 
+margin: 0;
+}
+#time { 
+font-family:digital-clock-font,sans-serif;
+font-size: 8em;
+color:white;
+}
+#ampm { 
+font-size: 3em; 
+color: white;
+}
+</style>
+</head>
+<body>
+<h1 style="font-size:50px;color:white;text-align:center;">INDIAN STANDARD TIME</h1>
+<section>
+<div id="time"></div>
+<span id="ampm"></span>
+</section>
+<script>
+function updateTime() {
+var t = new Date(), h = t.getHours(), m = t.getMinutes(), s = t.getSeconds(),ampm=h>=12? "PM":"AM";
+h=h%12||12;
+m = m < 10 ? "0" + m : m;
+s = s < 10 ? "0" + s : s;
+var formattedTime=h+":"+m+":"+s;
+var formattedAMPM= ampm;
+document.getElementById("time").innerText =formattedTime;
+document.getElementById("ampm").innerText=formattedAMPM;
+}
+setInterval(updateTime, 1000);
+updateTime();
+</script>
+</body>
+</html>

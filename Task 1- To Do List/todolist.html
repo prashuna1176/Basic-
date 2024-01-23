@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<head>
+<title>Todo List</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+background-image: linear-gradient(to right,#654ea3,#eaafc8);
+text-align: center;
+margin: 20px;
+}
+div {
+border: 10px solid black;
+padding: 10px;
+border-radius: 25px;
+margin: auto;
+width:50%;
+background-color:white;
+}
+#taskInput {
+padding: 10px;
+border-radius: 25px;
+width: 200px;
+}
+#addTaskB {
+padding: 10px;
+border-radius: 20px
+}
+.taskItem {
+margin: 5px;
+padding: 10px;
+border-radius: 25px;
+border: 2px solid black;
+display: flex;
+justify-content: space-between;
+ }
+.deleteB {
+cursor: pointer;
+color: red;
+}
+.done {
+text-decoration: line-through;
+color:#888;
+} 
+header {
+padding: 30px;
+border-radius: 25px;
+border: 5px solid black; 
+text-align: center;
+background-color:white;
+color: violet;
+font-size: 50px;
+margin-bottom: 50px
+}
+.taskCheckbox {
+transform: scale(2);
+}
+</style>
+</head>
+<body>
+<header><B>TO DO LIST</B></header>
+<p style="font-size:30px;">Streamline your day with our clean and easy to use todo list your go-to companion for staying organized effortlessly :)</p>
+<div>
+<h1 style="color:violet;">Enter the Task:</h1>
+<input type="text" id="taskInput" placeholder="Enter task">
+<button id="addTaskB">Add Task</button>
+<ul id="taskList"></ul>
+</div>
+<script>
+const taskInput = document.getElementById('taskInput');
+const addTaskB = document.getElementById('addTaskB');
+const taskList = document.getElementById('taskList');
+addTaskB.addEventListener('click', addTask);
+function addTask() {
+const taskText = taskInput.value.trim();
+if (taskText !== '') {
+const taskItem = document.createElement('li');
+taskItem.className = 'taskItem';
+const doneCheckbox = document.createElement('input');
+doneCheckbox.type = 'checkbox';
+doneCheckbox.className = 'taskCheckbox';
+doneCheckbox.addEventListener('change', () => {
+taskTextElement.classList.toggle('done', doneCheckbox.checked);
+});
+const taskTextElement = document.createElement('span');
+taskTextElement.textContent = taskText;
+const deleteB = document.createElement('span');
+deleteB.className = 'deleteB';
+deleteB.textContent = 'Delete';
+deleteB.addEventListener('click', () => {
+taskList.removeChild(taskItem);
+});
+const editB = document.createElement('span');
+editB.className = 'editB';
+editB.textContent = 'Edit';
+editB.addEventListener('click', () => {
+const newTaskText = prompt('Enter new task:', taskText);
+if (newTaskText !== null) {
+taskTextElement.textContent = newTaskText;
+}         
+});
+taskItem.appendChild(doneCheckbox);
+taskItem.appendChild(taskTextElement);
+taskItem.appendChild(editB);
+taskItem.appendChild(deleteB);
+taskList.appendChild(taskItem);
+taskInput.value = '';
+}
+}
+</script>
+</body>
+</html>

@@ -1,5 +1,3 @@
-# Codsoft
-
 ## Overview
 
 This repository includes three tasks: a To-Do List application, a portfolio , a digital clock
